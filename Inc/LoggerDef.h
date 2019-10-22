@@ -5,12 +5,12 @@
 
 #define PROG_VERSION				(uint16_t)0x01
 
-#define SEL_2								(uint8_t)0x01						// for pin P0.0
-#define SEL_1								(uint8_t)0x08						// for pin P0.3
-#define CPU_FET							(uint8_t)0x10						// for P0.4
-#define VEXT_PRES						(uint8_t)0x20						// for pin P0.5
-#define	CNTR_PER						(uint8_t)0x01						// for pin P2.0	
-	
+//#define SEL_2								(uint8_t)0x01						// for pin P0.0
+//#define SEL_1								(uint8_t)0x08						// for pin P0.3
+//#define CPU_FET							(uint8_t)0x10						// for P0.4
+//#define VEXT_PRES						(uint8_t)0x20						// for pin P0.5
+//#define	CNTR_PER						(uint8_t)0x01						// for pin P2.0	
+
 #define DEFAULT_INTERVAL		(uint16_t)60
 #define ALARM_INTERVAL			(uint16_t)1
 #define RECORDS_ON_PAGE			(uint16_t)32

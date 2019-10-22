@@ -1,4 +1,5 @@
 #include "BoardInit.h"
+#include "Pins.h"
 
 /***************************************************************************************************************
 
@@ -14,7 +15,7 @@ void initSysTick(void){
 
 
 ****************************************************************************************************************/
-void initCorePin(void){
+/*void initCorePin(void){
 
 	pADI_GP0->GPSET = 0xFF;
 	pADI_GP0->GPOCE = ~UART_RX;																								// set unused pins as Open Circuit	
@@ -32,7 +33,11 @@ void initCorePin(void){
 	pADI_GP2->GPPUL = 0x00;																										// disable pull-up resistors for all pins
 
 }
-	
+*/	
+void initCore(void)
+{ 
+  pADI_CLKCTL->CLKDIS &= ~(CLKDIS_DISDACCLK | CLKDIS_DISDMACLK | CLKDIS_DISI2CCLK | CLKDIS_DISSPI1CLK | CLKDIS_DIST0CLK | CLKDIS_DIST1CLK | CLKDIS_DISPWMCLK);
+};
 /*************************************************************************************************************** 
 
 
@@ -63,11 +68,8 @@ void enableADC(void){
 	pADI_ADC0->CON |= ADC0CON_ADCEN; 																					// enable the ADC0 
 	pADI_ADC1->CON |= ADC1CON_ADCEN; 																					// enable the ADC1 
 	
-	pADI_GP2->GPCLR = CNTR_PER;																								// out LOW to CNTR_PER
-	pADI_GP2->GPOCE &= ~CNTR_PER; 																						
-	
-	pADI_GP0->GPCLR = (SEL_1 | SEL_2);																				// out LOW to SEL_1 and SEL_2
-	pADI_GP0->GPOCE &= ~(SEL_1 | SEL_2); 																			// set SEL_1 and SEL_2 as Outputs
+  PinCntrlPer_On();
+	PinSel_On();
 }
 
 /*************************************************************************************************************** 
@@ -80,11 +82,8 @@ void disableADC(void){
 	pADI_ADC1->CON &= ~ADC1CON_ADCEN; 																				// disable the ADC
 	pADI_CLKCTL->CLKDIS |= CLKDIS_DISADCCLK;																	// disable ADCclk
 
-	pADI_GP0->GPOCE |= (SEL_1 | SEL_2); 																			// set SEL_1 and SEL_2 as Open Drain Float
-	pADI_GP0->GPSET = (SEL_1 | SEL_2);	
-
-	pADI_GP2->GPSET = CNTR_PER;																								// set CNTR_PER as Open Drain Float
-	pADI_GP2->GPOCE |= CNTR_PER; 
+	PinSel_Off();
+//  PinCntrlPer_Off();
 }
 
 /***************************************************************************************************************
@@ -111,11 +110,15 @@ void initUART(void){
 
 ****************************************************************************************************************/	
 uint16_t enableUART(void){
-	pADI_GP0->GPCON |= GP0CON_CON1_UARTRXD | GP0CON_CON2_UARTTXD;							// configure pins P0.1 and P0.2 for UART
+	PinRTxD_On();
+	//pADI_GP0->GPCON |= GP0CON_CON1_UARTRXD | GP0CON_CON2_UARTTXD;							// configure pins P0.1 and P0.2 for UART
 	pADI_CLKCTL->CLKCON1 = (pADI_CLKCTL->CLKCON1 & ~CLKCON1_UARTCD_MSK) | 
 													CLKCON1_UARTCD_DIV2;															// set UARTclk to 4MHz
 	pADI_CLKCTL->CLKDIS &= ~CLKDIS_DISUARTCLK;																// enable UARTclk
 	pADI_UART->COMCON = 0x00;																									// enable UART
+	
+	
+
 	
 	return 1;
 }
@@ -128,7 +131,8 @@ uint16_t disableUART(void){
 	pADI_UART->COMCON = 0x01;																									// disable UART
 	pADI_CLKCTL->CLKCON1 |= CLKCON1_UARTCD_MSK;																// set UARTclk to UCLK/128
 	pADI_CLKCTL->CLKDIS |= CLKDIS_DISUARTCLK;																	// disable UARTclk
-	pADI_GP0->GPCON &= ~(GP0CON_CON1_MSK | GP0CON_CON2_MSK);									// configure pins P0.1 and P0.2 as GPIO
+	//pADI_GP0->GPCON &= ~(GP0CON_CON1_MSK | GP0CON_CON2_MSK);									// configure pins P0.1 and P0.2 as GPIO
+	PinRTxD_Off();
 	return 0;
 }
 
@@ -136,14 +140,14 @@ uint16_t disableUART(void){
 
 
 ****************************************************************************************************************/
-#define	PRE_DIV				256
+#define	PRE_DIV				32768
 #define ONE_SECUND		(32768 / PRE_DIV)			
 void startWakeUpOnEverySecond(void){
 
 	pADI_CLKCTL->XOSCCON |= XOSCCON_ENABLE;																	// enable the LFXTAL oscillator circuitry
 	pADI_WUT->T2CON = T2CON_MOD_PERIODIC |																	// set Operate in PERIODIC mode; that is, counts up to the value in T2WUFD 
 										T2CON_WUEN_EN | 																			// set Wake-up enable bits
-										T2CON_PRE_DIV256 | 																		// clock prescaler select
+										T2CON_PRE_DIV32768 | 																		// clock prescaler select
 										T2CON_CLK_LFXTAL;  																		// clock select LFXTAL: 32 kHz external crystal
 	pADI_WUT->T2WUFD0 = (uint16_t)(ONE_SECUND - 1);													// set periodic interrupt\wake-up to 1 secund
 	pADI_WUT->T2WUFD1 = (uint16_t)(0);
@@ -152,6 +156,25 @@ void startWakeUpOnEverySecond(void){
 	T2CON_ENABLE_BBA = 1; 																									// enable the timer
 }
 
+void	initRtcWakeUpTimer2 (uint16_t* interval){
+	uint32_t miliseconds;
+	miliseconds= (*interval);
+	pADI_CLKCTL->XOSCCON |= XOSCCON_ENABLE;
+	
+	//pADI_WUT->T2CON |= T2CON_STOPINC | T2CON_PRE_DIV32768 | T2CON_CLK_LFXTAL | T2CON_ENABLE | T2CON_WUEN; // start timer with clocking 1 secund
+	pADI_WUT->T2CON = T2CON_MOD_PERIODIC|T2CON_WUEN_EN| T2CON_PRE_DIV32768 | T2CON_CLK_LFXTAL;  /* configure the interrupt for wake-up field D T2CON_PRE_DIV16 */
+	
+	
+	 pADI_WUT->T2WUFD0= (short)(miliseconds&0x0000FFFF);
+	 pADI_WUT->T2WUFD1= (short)(miliseconds>>16);
+
+	pADI_WUT->T2IEN |= (0x8 & 0x1F);  /* Configure the timeout  for the wake-up timer */ 
+	
+	NVIC_EnableIRQ(WUT_IRQn);
+ //nvicClearPendingIRQ(WUT_IRQn);
+	
+	T2CON_ENABLE_BBA = 1;
+}	
 
 /***************************************************************************************************************
 
@@ -171,10 +194,13 @@ void initSpi_0(void){
 
 ****************************************************************************************************************/
 void enableSpi_0(void){
-	pADI_GP1->GPCON |= GP1CON_CON7_SPI0CS | GP1CON_CON6_SPI0MOSI | GP1CON_CON5_SPI0SCLK | GP1CON_CON4_SPI0MISO; 	// configure pins P1.4..P1.7 for SPI0
+	
+	PinCntrlPer_On();
+	PinSPI_On();
+	//pADI_GP1->GPCON |= GP1CON_CON7_SPI0CS | GP1CON_CON6_SPI0MOSI | GP1CON_CON5_SPI0SCLK | GP1CON_CON4_SPI0MISO; 	// configure pins P1.4..P1.7 for SPI0
 
-	pADI_GP2->GPCLR = CNTR_PER;																								// out LOW to CNTR_PER
-	pADI_GP2->GPOCE &= ~CNTR_PER; 																						
+	//pADI_GP2->GPCLR = CNTR_PER;																								// out LOW to CNTR_PER
+	//pADI_GP2->GPOCE &= ~CNTR_PER; 																						
 
 	pADI_CLKCTL->CLKCON1 = (pADI_CLKCTL->CLKCON1 & ~CLKCON1_SPI0CD_MSK) | 
 													CLKCON1_SPI0CD_DIV4;															// set SPI0clk to 1MHz
@@ -191,10 +217,11 @@ void disableSpi_0(void){
 	pADI_CLKCTL->CLKCON1 |= CLKCON1_SPI0CD_MSK;																// set SPI0clk to UCLK/128
 	pADI_CLKCTL->CLKDIS |= CLKDIS_DISSPI0CLK;																	// disable SPI0clk
 
-	pADI_GP2->GPSET = CNTR_PER;																								// set CNTR_PER as Open Drain Float
-	pADI_GP2->GPOCE |= CNTR_PER; 
+	//pADI_GP2->GPSET = CNTR_PER;																								// set CNTR_PER as Open Drain Float
+	//pADI_GP2->GPOCE |= CNTR_PER; 
 
-	pADI_GP1->GPCON &= ~(GP1CON_CON7_SPI0CS | GP1CON_CON6_SPI0MOSI | GP1CON_CON5_SPI0SCLK | GP1CON_CON4_SPI0MISO);
+	//pADI_GP1->GPCON &= ~(GP1CON_CON7_SPI0CS | GP1CON_CON6_SPI0MOSI | GP1CON_CON5_SPI0SCLK | GP1CON_CON4_SPI0MISO);
+	PinSPI_Off();
 }
 
 /***************************************************************************************************************

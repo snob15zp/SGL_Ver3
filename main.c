@@ -3,6 +3,9 @@
 // Author: Yakov Churinov
 // Date:
 
+//#define debugmode
+
+
 #include <stdio.h>
 #include <time.h>
 #include <string.h>
@@ -10,6 +13,7 @@
 #include <ADUCM360.h>
 #include <BoardInit.h>
 #include "LoggerDef.h"
+#include "Pins.h"
 
 typedef  uint16_t (*type_MyFunct)(void);
 static  const type_MyFunct funcAddress[] = {addrError, cmdError, setLoggerTime, getLoggerTime, getLoggerData, clrLoggerFlash, setLoggerLimitsNeg, setLoggerLimitsPos,
@@ -147,10 +151,22 @@ void ADC1_Int_Handler (){
 
 
 ****************************************************************************************************************/
+void goToSleep1(void);
+
 int main (void){
 
-	initCorePin();
-
+	PinAll_Init();
+	initCore(); 
+	pADI_ADC0->CON=ADC0CON_BUFPOWN|ADC0CON_BUFPOWP;
+#ifdef debugmode	
+ uint16_t a;
+ a=1;	
+ initRtcWakeUpTimer2(&a);
+ while (1) 
+ {goToSleep1();
+ };
+#endif
+	
 	enableADC();
 	initADC();
 	disableADC();
@@ -168,7 +184,7 @@ int main (void){
 	recordsCount = 0;
 	pageCount = 0;
 
-	if(!(pADI_GP0->GPIN & UART_RX)){
+	if(!(pADI_GP0->GPIN & RxD)){
 		Flags.EXTERN_PWR = disableUART();
 		Flags.SLEEP_READY = 1;
 	}
@@ -210,7 +226,7 @@ int main (void){
 
 		if(Flags.SLEEP_READY){
 			goToSleep();
-			if(pADI_GP0->GPIN & UART_RX){Flags.EXTERN_PWR = enableUART();}		
+			if(pADI_GP0->GPIN & RxD){Flags.EXTERN_PWR = enableUART();}		
 		}
 		
 		if (Flags.UART_TX_END == 1){
@@ -247,8 +263,8 @@ void goToSleep(void){
 	disableSpi_0();
 	Flags.EXTERN_PWR = disableUART();
 	disableADC();
+  PinCntrlPer_Off();
 
-/*
 	SCB->SCR = 0x04;       																										// for deep sleep mode - write to the Cortex-m3 System Control register bit2
 
 	pADI_PWRCTL->PWRKEY = 0x4859;   																					// key1 
@@ -261,10 +277,32 @@ void goToSleep(void){
 	__WFI(); 
 		
 	for(i = 0; i < 2; i++){}
-*/
+
 
 }
+extern void AsmWFI(void);
+void goToSleep1(void){
 
+	disableSpi_0();
+	Flags.EXTERN_PWR = disableUART();
+	disableADC();
+  PinCntrlPer_Off();
+
+	SCB->SCR = 0x04;       																										// for deep sleep mode - write to the Cortex-m3 System Control register bit2
+
+	pADI_PWRCTL->PWRKEY = 0x4859;   																					// key1 
+	pADI_PWRCTL->PWRKEY = 0xF27B;   																					// key2  
+	pADI_PWRCTL->PWRMOD = PWRMOD_MOD_TOTALHALT; 															// deep sleep mode 
+
+	uint32_t i = 0;
+	for(i = 0; i < 2; i++){}
+
+	//__WFI(); 
+  AsmWFI();
+	for(i = 0; i < 2; i++){}
+
+
+}
 /***************************************************************************************************************
 
 

@@ -1,6 +1,9 @@
 --cpu Cortex-M3
 ".\objects\main.o"
 ".\objects\boardinit.o"
+".\objects\crc8.o"
+".\objects\pins.o"
+".\objects\asmwfi.o"
 ".\objects\startup_aducm360.o"
 ".\objects\system_aducm360.o"
 --library_type=microlib --strict --scatter ".\Objects\Logger.sct"

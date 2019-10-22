@@ -392,6 +392,21 @@
               <FileType>1</FileType>
               <FilePath>.\Src\BoardInit.c</FilePath>
             </File>
+            <File>
+              <FileName>crc8.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Src\crc8.c</FilePath>
+            </File>
+            <File>
+              <FileName>Pins.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Src\Pins.c</FilePath>
+            </File>
+            <File>
+              <FileName>AsmWFI.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\Src\AsmWFI.s</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

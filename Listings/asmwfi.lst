@@ -1,0 +1,61 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ;*******************************************************
+                       **********************
+    2 00000000         ; In C code
+    3 00000000         ; Prototype as
+    4 00000000         ;  extern void AsmWFI(void);
+    5 00000000         ; Call as
+    6 00000000         ;  AsmWFI()
+    7 00000000         
+    8 00000000                 AREA             |asmcode|, CODE, READONLY
+    9 00000000         
+   10 00000000         AsmWFI  PROC
+   11 00000000                 EXPORT           AsmWFI
+   12 00000000         
+   13 00000000         ; Params 1 thru 4 in R0..R3
+   14 00000000         ; Returns R0
+   15 00000000 BF00            nop
+   16 00000002 BF00            nop
+   17 00000004 BF00            nop
+   18 00000006 BF30            WFI
+   19 00000008 BF00            nop
+   20 0000000A BF00            nop
+   21 0000000C 4770            BX               LR
+   22 0000000E                 ENDP                         ; AsmWFI
+   23 0000000E                 END
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
+ork --depend=.\objects\asmwfi.d -o.\objects\asmwfi.o -I.\RTE\_Target_1 -IC:\Use
+rs\RD\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include -IC:\Users\RD\
+AppData\Local\Arm\Packs\AnalogDevices\ADuCM36x_DFP\1.0.4\Device\Include --prede
+fine="__MICROLIB SETA 1" --predefine="__UVISION_VERSION SETA 528" --predefine="
+_RTE_ SETA 1" --predefine="__ADUCM360__ SETA 1" --list=.\listings\asmwfi.lst Sr
+c\AsmWFI.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+AsmWFI 00000000
+
+Symbol: AsmWFI
+   Definitions
+      At line 10 in file Src\AsmWFI.s
+   Uses
+      At line 11 in file Src\AsmWFI.s
+Comment: AsmWFI used once
+asmcode 00000000
+
+Symbol: asmcode
+   Definitions
+      At line 8 in file Src\AsmWFI.s
+   Uses
+      None
+Comment: asmcode unused
+2 symbols
+336 symbols in table
