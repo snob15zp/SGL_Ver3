@@ -115,17 +115,17 @@ void SystemInit (void)
    /* SetSystemExtClkFreq(Freq); // if an external clock is used SetSystemExtClkFreq must be called
                                  // before calling SystemCoreClockUpdate() */
 
-//   pADI_WDT->T3CON  = 0;                    	/* disable watchdog */
-//   pADI_CLKCTL->CLKCON0   = 0x0;           	 	/* 16MHz output of UCLK divide */
-//   pADI_CLKCTL->CLKSYSDIV = 0;             		/* No divide of 16MHz system clock */
-//   pADI_CLKCTL->CLKCON1   = 0x0;            	/* PWM = 16MHz, UART = 16MHz, SPI1 = 16MHz, SPI0=16MHz */
-//   pADI_CLKCTL->CLKDIS    = 0x00;            	/* Enable clock to all peripherals */
+   pADI_WDT->T3CON  = 0;                    	/* disable watchdog */
+   pADI_CLKCTL->CLKCON0   = 0x0;           	 	/* 16MHz output of UCLK divide */
+   pADI_CLKCTL->CLKSYSDIV = 0;             		/* No divide of 16MHz system clock */
+   pADI_CLKCTL->CLKCON1   = 0x0;            	/* PWM = 16MHz, UART = 16MHz, SPI1 = 16MHz, SPI0=16MHz */
+   pADI_CLKCTL->CLKDIS    = 0x00;            	/* Enable clock to all peripherals */
 	
-   pADI_WDT->T3CON  = 0;                    /* disable watchdog */
-   pADI_CLKCTL->CLKCON0   = 0x3;            /* 16MHz output of UCLK divide */
-   pADI_CLKCTL->CLKSYSDIV = 1;              /* No divide of 16MHz system clock */
-   pADI_CLKCTL->CLKCON1   = 0x7fff;            /* PWM = 16MHz, UART = 16MHz, SPI1 = 16MHz, SPI0=16MHz */
-   pADI_CLKCTL->CLKDIS    = 0x0;            /* Enable clock to all peripherals */
+//   pADI_WDT->T3CON  = 0;                    /* disable watchdog */
+//   pADI_CLKCTL->CLKCON0   = 0x3;            /* 16MHz output of UCLK divide */
+//   pADI_CLKCTL->CLKSYSDIV = 1;              /* No divide of 16MHz system clock */
+//   pADI_CLKCTL->CLKCON1   = 0x7fff;            /* PWM = 16MHz, UART = 16MHz, SPI1 = 16MHz, SPI0=16MHz */
+//   pADI_CLKCTL->CLKDIS    = 0x0;            /* Enable clock to all peripherals */
 
    /* compute internal clocks */
    SystemCoreClockUpdate();

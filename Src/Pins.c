@@ -32,23 +32,6 @@ HALT OUT          0   0   0   0     1      x       x                 x    0   0 
 
 //  ***************************************** NC Pins **************************************************
 
-
-#define SEL_2								((uint8_t) 1<<0)						// for pin P0.0
-#define RxD                 ((uint8_t) 1<<1)            // for pin P0.1
-#define TxD                 ((uint8_t) 1<<2)            // for pin P0.2
-#define SEL_1								((uint8_t) 1<<3)						// for pin P0.3
-#define CPU_FET							((uint8_t) 1<<4)						// for P0.4
-#define VEXT_PRES						((uint8_t) 1<<5	)					// for pin P0.5
-#define MISO                ((uint8_t) 1<<4	)         // for pin P1.4
-#define SCK                 ((uint8_t) 1<<5	)         // for pin P1.5
-#define MOSI                ((uint8_t) 1<<6	)         // for pin P1.6
-#define SPI0_CS							((uint8_t) 1<<7	)					// for pin P1.7
-#define	CNTR_PER						((uint8_t) 1<<0	)					// for pin P2.0	
-
-
-
-
-
 void PinNC_Init(void)
 {
 	// p0.6 p0.7
@@ -100,13 +83,9 @@ void PinSel_On(void)
 
 void PinRTxD_Init(void)
 {
-	pADI_GP0->GPOEN&= ~( TxD ); 
-	pADI_GP0->GPOCE|= (TxD);
-	pADI_GP0->GPPUL|= (TxD);
-
-	pADI_GP0->GPOEN&= ~(RxD ); 
-	pADI_GP0->GPOCE&= ~(RxD );
-	pADI_GP0->GPPUL&= ~(RxD );
+	pADI_GP0->GPOEN&= ~( TxD | RxD ); 
+	pADI_GP0->GPOCE|= (TxD | RxD );
+	pADI_GP0->GPPUL|= (TxD | RxD );
 
 }
 
@@ -115,27 +94,39 @@ void PinRTxD_On(void)
 	pADI_GP0->GPCON |= GP0CON_CON1_UARTRXD | GP0CON_CON2_UARTTXD;					// configure pins P0.1 and P0.2 for UART
 }
 
+void PinRxD_TestVoltage_On(void)
+{
+	pADI_GP0->GPOEN&= ~(RxD ); 
+	pADI_GP0->GPOCE&= ~(RxD );
+	pADI_GP0->GPPUL&= ~(RxD );	
+	
+	pADI_GP0->GPCON &= ~(GP0CON_CON1_UARTRXD | GP0CON_CON2_UARTTXD);	
+}
+
 void PinRTxD_Off(void)
 {
+	PinRTxD_Init();
+	
 	pADI_GP0->GPCON &= ~(GP0CON_CON1_UARTRXD | GP0CON_CON2_UARTTXD);			// configure pins P0.1 and P0.2 for IO
 }
 
+
 //************************************** CPUFET ****************************************************************
 //Do not used
-void PinCPUFET_Init(void) //Set up an open drain and sit in this mode 
-{
+//void PinCPUFET_Init(void) //Set up an open drain and sit in this mode 
+//{
 	//pADI_GP0->GPOCE|= CPU_FET;
 	//pADI_GP0->GPOEN|= (CPU_FET); 
 	//pADI_GP0->GPSET = CPU_FET;
 	//pADI_GP0->GPPUL&= ~CPU_FET;
 	////pADI_GP0->GPPUL|=CPU_FET;
 	
-	pADI_GP0->GPOEN&= ~(MISO); 
-	pADI_GP0->GPOCE|= MISO;
-	pADI_GP0->GPPUL|= MISO;
-}
-void PinCPUFET_On(void) { 	/*PinCPUFET_Init();*/ }
-void PinCPUFET_Off(void) {	PinCPUFET_Init();   }
+//	pADI_GP0->GPOEN&= ~(MISO); 
+//	pADI_GP0->GPOCE|= MISO;
+//	pADI_GP0->GPPUL|= MISO;
+//}
+//void PinCPUFET_On(void) { 	/*PinCPUFET_Init();*/ }
+//void PinCPUFET_Off(void) {	PinCPUFET_Init();   }
 
 /*************************************** Vpres ******************************************************************/
 

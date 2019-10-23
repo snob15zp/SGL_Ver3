@@ -3,7 +3,7 @@
 // Author: Yakov Churinov
 // Date:
 
-//#define debugmode
+#define debugmode
 
 
 #include <stdio.h>
@@ -157,8 +157,8 @@ int main (void){
 
 	PinAll_Init();
 	initCore(); 
-	pADI_ADC0->CON=ADC0CON_BUFPOWN|ADC0CON_BUFPOWP;
 #ifdef debugmode	
+ pADI_ADC0->CON=ADC0CON_BUFPOWN|ADC0CON_BUFPOWP;
  uint16_t a;
  a=1;	
  initRtcWakeUpTimer2(&a);
@@ -297,8 +297,8 @@ void goToSleep1(void){
 	uint32_t i = 0;
 	for(i = 0; i < 2; i++){}
 
-	//__WFI(); 
-  AsmWFI();
+	__WFI(); 
+  // AsmWFI();
 	for(i = 0; i < 2; i++){}
 
 
