@@ -34,12 +34,12 @@ HALT OUT          0   0   0   0     1      x       x                 x    0   0 
 
 void PinNC_Init(void)
 {
-	// p0.6 p0.7
-	#define p067 (0b11000000)
-	pADI_GP0->GPOEN &= ~p067;
-	pADI_GP0->GPOCE |= p067;
-	pADI_GP0->GPPUL |= p067;
-	//pADI_GP0->GPPUL &= ~p067;
+	// p0.6 p0.7 + CPU_FET
+	#define p0467 (0b11010000)
+	pADI_GP0->GPOEN &= ~p0467;
+	pADI_GP0->GPOCE |= p0467;
+	pADI_GP0->GPPUL |= p0467;
+	//pADI_GP0->GPPUL &= ~p0467;
 	
 	// p1.0 p1.1 p1.2 p1.3
 	#define p10123 (0b00001111)
@@ -231,7 +231,7 @@ void PinAll_Init(void)
   PinNC_Init();
 	PinSel_Init();
 	PinRTxD_Init();
-	PinCPUFET_Init();
+//	PinCPUFET_Init();
 	PinVpres_Init();
 	PinMISO_Init();
 	PinMOSISCK_Init();

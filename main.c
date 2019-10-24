@@ -149,6 +149,7 @@ void ADC1_Int_Handler (){
 
 /***************************************************************************************************************
 
+                                                     M A I N
 
 ****************************************************************************************************************/
 void goToSleep1(void);
@@ -157,6 +158,8 @@ int main (void){
 
 	PinAll_Init();
 	initCore(); 
+	pADI_GP0->GPTGL=SEL_2;
+	pADI_GP0->GPSET=SEL_1;
 #ifdef debugmode	
  pADI_ADC0->CON=ADC0CON_BUFPOWN|ADC0CON_BUFPOWP;
  uint16_t a;
@@ -283,10 +286,10 @@ void goToSleep(void){
 extern void AsmWFI(void);
 void goToSleep1(void){
 
-	disableSpi_0();
-	Flags.EXTERN_PWR = disableUART();
-	disableADC();
-  PinCntrlPer_Off();
+	//disableSpi_0();
+	//Flags.EXTERN_PWR = disableUART();
+	//disableADC();
+  //PinCntrlPer_Off();
 
 	SCB->SCR = 0x04;       																										// for deep sleep mode - write to the Cortex-m3 System Control register bit2
 
@@ -300,7 +303,7 @@ void goToSleep1(void){
 	__WFI(); 
   // AsmWFI();
 	for(i = 0; i < 2; i++){}
-
+  pADI_GP0->GPTGL=SEL_2;
 
 }
 /***************************************************************************************************************

@@ -73,11 +73,6 @@ Section Cross References
     main.o(i.goToSleep) refers to boardinit.o(i.disableADC) for disableADC
     main.o(i.goToSleep) refers to pins.o(i.PinCntrlPer_Off) for PinCntrlPer_Off
     main.o(i.goToSleep) refers to main.o(.data) for Flags
-    main.o(i.goToSleep1) refers to boardinit.o(i.disableSpi_0) for disableSpi_0
-    main.o(i.goToSleep1) refers to boardinit.o(i.disableUART) for disableUART
-    main.o(i.goToSleep1) refers to boardinit.o(i.disableADC) for disableADC
-    main.o(i.goToSleep1) refers to pins.o(i.PinCntrlPer_Off) for PinCntrlPer_Off
-    main.o(i.goToSleep1) refers to main.o(.data) for Flags
     main.o(i.main) refers to pins.o(i.PinAll_Init) for PinAll_Init
     main.o(i.main) refers to boardinit.o(i.initCore) for initCore
     main.o(i.main) refers to boardinit.o(i.initRtcWakeUpTimer2) for initRtcWakeUpTimer2
@@ -169,15 +164,14 @@ Section Cross References
     pins.o(i.PinAll_Init) refers to pins.o(i.PinNC_Init) for PinNC_Init
     pins.o(i.PinAll_Init) refers to pins.o(i.PinSel_Init) for PinSel_Init
     pins.o(i.PinAll_Init) refers to pins.o(i.PinRTxD_Init) for PinRTxD_Init
-    pins.o(i.PinAll_Init) refers to pins.o(i.PinCPUFET_Init) for PinCPUFET_Init
     pins.o(i.PinAll_Init) refers to pins.o(i.PinVpres_Init) for PinVpres_Init
     pins.o(i.PinAll_Init) refers to pins.o(i.PinMISO_Init) for PinMISO_Init
     pins.o(i.PinAll_Init) refers to pins.o(i.PinMOSISCK_Init) for PinMOSISCK_Init
     pins.o(i.PinAll_Init) refers to pins.o(i.PinCS_Init) for PinCS_Init
-    pins.o(i.PinCPUFET_Off) refers to pins.o(i.PinCPUFET_Init) for PinCPUFET_Init
     pins.o(i.PinCS_Off) refers to pins.o(i.PinCS_Init) for PinCS_Init
     pins.o(i.PinMISO_Off) refers to pins.o(i.PinMISO_Init) for PinMISO_Init
     pins.o(i.PinMOSISCK_Off) refers to pins.o(i.PinMOSISCK_Init) for PinMOSISCK_Init
+    pins.o(i.PinRTxD_Off) refers to pins.o(i.PinRTxD_Init) for PinRTxD_Init
     pins.o(i.PinSPI_Off) refers to pins.o(i.PinMISO_Off) for PinMISO_Off
     pins.o(i.PinSPI_Off) refers to pins.o(i.PinMOSISCK_Off) for PinMOSISCK_Off
     pins.o(i.PinSPI_Off) refers to pins.o(i.PinCS_Off) for PinCS_Off
@@ -541,6 +535,9 @@ Removing Unused input sections from the image.
     Removing boardinit.o(.rev16_text), (4 bytes).
     Removing boardinit.o(.revsh_text), (4 bytes).
     Removing boardinit.o(.rrx_text), (6 bytes).
+    Removing boardinit.o(i.disableADC), (56 bytes).
+    Removing boardinit.o(i.disableSpi_0), (52 bytes).
+    Removing boardinit.o(i.disableUART), (48 bytes).
     Removing boardinit.o(i.enableADC), (60 bytes).
     Removing boardinit.o(i.enableSpi_0), (56 bytes).
     Removing boardinit.o(i.enableUART), (52 bytes).
@@ -554,14 +551,20 @@ Removing Unused input sections from the image.
     Removing pins.o(.rev16_text), (4 bytes).
     Removing pins.o(.revsh_text), (4 bytes).
     Removing pins.o(.rrx_text), (6 bytes).
-    Removing pins.o(i.PinCPUFET_Off), (8 bytes).
-    Removing pins.o(i.PinCPUFET_On), (2 bytes).
+    Removing pins.o(i.PinCS_Off), (24 bytes).
     Removing pins.o(i.PinCS_On), (20 bytes).
+    Removing pins.o(i.PinCntrlPer_Off), (12 bytes).
     Removing pins.o(i.PinCntrlPer_On), (12 bytes).
+    Removing pins.o(i.PinMISO_Off), (24 bytes).
     Removing pins.o(i.PinMISO_On), (20 bytes).
+    Removing pins.o(i.PinMOSISCK_Off), (24 bytes).
     Removing pins.o(i.PinMOSISCK_On), (20 bytes).
+    Removing pins.o(i.PinRTxD_Off), (24 bytes).
     Removing pins.o(i.PinRTxD_On), (20 bytes).
+    Removing pins.o(i.PinRxD_TestVoltage_On), (48 bytes).
+    Removing pins.o(i.PinSPI_Off), (16 bytes).
     Removing pins.o(i.PinSPI_On), (16 bytes).
+    Removing pins.o(i.PinSel_Off), (8 bytes).
     Removing pins.o(i.PinSel_On), (12 bytes).
     Removing pins.o(i.PinVpres_Off), (2 bytes).
     Removing pins.o(i.PinVpres_On), (2 bytes).
@@ -582,7 +585,7 @@ Removing Unused input sections from the image.
     Removing cdrcmple.o(.text), (48 bytes).
     Removing depilogue.o(.text), (186 bytes).
 
-80 unused section(s) (total 7012 bytes) removed from the image.
+89 unused section(s) (total 7338 bytes) removed from the image.
 
 ==============================================================================
 
@@ -593,50 +596,50 @@ Image Symbol Table
     Symbol Name                              Value     Ov Type        Size  Object(Section)
 
     RESET                                    0x00000000   Section      224  startup_aducm360.o(RESET)
-    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isxdigit_o.o ABSOLUTE
-    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isalnum_o.o ABSOLUTE
-    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  ctype_o.o ABSOLUTE
-    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isalpha_o.o ABSOLUTE
-    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  iscntrl_o.o ABSOLUTE
-    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isupper_o.o ABSOLUTE
-    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isspace_o.o ABSOLUTE
     ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  ispunct_o.o ABSOLUTE
     ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isprint_o.o ABSOLUTE
     ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  islower_o.o ABSOLUTE
     ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isgraph_o.o ABSOLUTE
     ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isdigit_o.o ABSOLUTE
+    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  iscntrl_o.o ABSOLUTE
+    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isalpha_o.o ABSOLUTE
+    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isalnum_o.o ABSOLUTE
+    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  ctype_o.o ABSOLUTE
+    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isspace_o.o ABSOLUTE
+    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isxdigit_o.o ABSOLUTE
+    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isupper_o.o ABSOLUTE
     ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isblank_o.o ABSOLUTE
-    ../clib/microlib/division.c              0x00000000   Number         0  uidiv.o ABSOLUTE
     ../clib/microlib/division.c              0x00000000   Number         0  uldiv.o ABSOLUTE
+    ../clib/microlib/division.c              0x00000000   Number         0  uidiv.o ABSOLUTE
     ../clib/microlib/division.c              0x00000000   Number         0  ldiv.o ABSOLUTE
     ../clib/microlib/errno.c                 0x00000000   Number         0  errno.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
     ../clib/microlib/longlong.c              0x00000000   Number         0  llsshr.o ABSOLUTE
     ../clib/microlib/longlong.c              0x00000000   Number         0  llushr.o ABSOLUTE
     ../clib/microlib/longlong.c              0x00000000   Number         0  llshl.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf1.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf2.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf3.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf4.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printfb.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf5.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf6.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf7.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf8.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printfa.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printfb.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf0.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf1.o ABSOLUTE
     ../clib/microlib/printf/stubs.s          0x00000000   Number         0  stubs.o ABSOLUTE
     ../clib/microlib/stdio/fputc.c           0x00000000   Number         0  fputc.o ABSOLUTE
     ../clib/microlib/stdio/semi.s            0x00000000   Number         0  semi.o ABSOLUTE
@@ -647,14 +650,14 @@ Image Symbol Table
     ../clib/microlib/string/strstr.c         0x00000000   Number         0  strstr.o ABSOLUTE
     ../clib/microlib/stubs.s                 0x00000000   Number         0  iusefp.o ABSOLUTE
     ../clib/microlib/stubs.s                 0x00000000   Number         0  iusesemip.o ABSOLUTE
-    ../clib/microlib/time/localtime.c        0x00000000   Number         0  localtime_w.o ABSOLUTE
-    ../clib/microlib/time/localtime.c        0x00000000   Number         0  localtime_i.o ABSOLUTE
     ../clib/microlib/time/localtime.c        0x00000000   Number         0  localtime.o ABSOLUTE
+    ../clib/microlib/time/localtime.c        0x00000000   Number         0  localtime_i.o ABSOLUTE
+    ../clib/microlib/time/localtime.c        0x00000000   Number         0  localtime_w.o ABSOLUTE
     ../clib/microlib/time/mktime.c           0x00000000   Number         0  mktime.o ABSOLUTE
-    ../clib/scanf.c                          0x00000000   Number         0  _strtoul.o ABSOLUTE
-    ../clib/scanf.c                          0x00000000   Number         0  _chval.o ABSOLUTE
     ../clib/scanf.c                          0x00000000   Number         0  atoi.o ABSOLUTE
     ../clib/scanf.c                          0x00000000   Number         0  strtol.o ABSOLUTE
+    ../clib/scanf.c                          0x00000000   Number         0  _strtoul.o ABSOLUTE
+    ../clib/scanf.c                          0x00000000   Number         0  _chval.o ABSOLUTE
     ../fplib/microlib/fpadd.c                0x00000000   Number         0  dadd.o ABSOLUTE
     ../fplib/microlib/fpdiv.c                0x00000000   Number         0  ddiv.o ABSOLUTE
     ../fplib/microlib/fpepilogue.c           0x00000000   Number         0  depilogue.o ABSOLUTE
@@ -690,40 +693,29 @@ Image Symbol Table
     i.ADC0_Int_Handler                       0x0000013c   Section        0  main.o(i.ADC0_Int_Handler)
     i.ADC1_Int_Handler                       0x00000170   Section        0  main.o(i.ADC1_Int_Handler)
     i.PinAll_Init                            0x000001a4   Section        0  pins.o(i.PinAll_Init)
-    i.PinCPUFET_Init                         0x000001cc   Section        0  pins.o(i.PinCPUFET_Init)
-    i.PinCS_Init                             0x000001f4   Section        0  pins.o(i.PinCS_Init)
-    i.PinCS_Off                              0x00000234   Section        0  pins.o(i.PinCS_Off)
-    i.PinCntrlPer_Init                       0x0000024c   Section        0  pins.o(i.PinCntrlPer_Init)
-    i.PinCntrlPer_Off                        0x0000028c   Section        0  pins.o(i.PinCntrlPer_Off)
-    i.PinMISO_Init                           0x00000298   Section        0  pins.o(i.PinMISO_Init)
-    i.PinMISO_Off                            0x000002c4   Section        0  pins.o(i.PinMISO_Off)
-    i.PinMOSISCK_Init                        0x000002dc   Section        0  pins.o(i.PinMOSISCK_Init)
-    i.PinMOSISCK_Off                         0x0000031c   Section        0  pins.o(i.PinMOSISCK_Off)
-    i.PinNC_Init                             0x00000334   Section        0  pins.o(i.PinNC_Init)
-    i.PinRTxD_Init                           0x000003b0   Section        0  pins.o(i.PinRTxD_Init)
-    i.PinRTxD_Off                            0x000003f4   Section        0  pins.o(i.PinRTxD_Off)
-    i.PinSPI_Off                             0x00000408   Section        0  pins.o(i.PinSPI_Off)
-    i.PinSel_Init                            0x00000418   Section        0  pins.o(i.PinSel_Init)
-    i.PinSel_Off                             0x00000448   Section        0  pins.o(i.PinSel_Off)
-    i.PinVpres_Init                          0x00000450   Section        0  pins.o(i.PinVpres_Init)
-    i.SPI0_Int_Handler                       0x00000478   Section        0  main.o(i.SPI0_Int_Handler)
-    i.SysTick_Handler                        0x00000560   Section        0  main.o(i.SysTick_Handler)
-    i.SystemInitForLowPower                  0x00000590   Section        0  system_aducm360.o(i.SystemInitForLowPower)
-    i.UART_Int_Handler                       0x000005bc   Section        0  main.o(i.UART_Int_Handler)
-    i.WakeUp_Int_Handler                     0x000006d8   Section        0  main.o(i.WakeUp_Int_Handler)
-    i.__NVIC_EnableIRQ                       0x00000708   Section        0  boardinit.o(i.__NVIC_EnableIRQ)
-    __NVIC_EnableIRQ                         0x00000709   Thumb Code    34  boardinit.o(i.__NVIC_EnableIRQ)
-    i.__scatterload_copy                     0x0000072a   Section       14  handlers.o(i.__scatterload_copy)
-    i.__scatterload_null                     0x00000738   Section        2  handlers.o(i.__scatterload_null)
-    i.__scatterload_zeroinit                 0x0000073a   Section       14  handlers.o(i.__scatterload_zeroinit)
-    i.disableADC                             0x00000748   Section        0  boardinit.o(i.disableADC)
-    i.disableSpi_0                           0x00000780   Section        0  boardinit.o(i.disableSpi_0)
-    i.disableUART                            0x000007b4   Section        0  boardinit.o(i.disableUART)
-    i.goToSleep1                             0x000007e4   Section        0  main.o(i.goToSleep1)
-    i.initCore                               0x00000844   Section        0  boardinit.o(i.initCore)
-    i.initRtcWakeUpTimer2                    0x00000858   Section        0  boardinit.o(i.initRtcWakeUpTimer2)
-    i.main                                   0x000008a4   Section        0  main.o(i.main)
-    .conststring                             0x000008cc   Section      114  main.o(.conststring)
+    i.PinCS_Init                             0x000001c8   Section        0  pins.o(i.PinCS_Init)
+    i.PinCntrlPer_Init                       0x00000208   Section        0  pins.o(i.PinCntrlPer_Init)
+    i.PinMISO_Init                           0x00000248   Section        0  pins.o(i.PinMISO_Init)
+    i.PinMOSISCK_Init                        0x00000274   Section        0  pins.o(i.PinMOSISCK_Init)
+    i.PinNC_Init                             0x000002b4   Section        0  pins.o(i.PinNC_Init)
+    i.PinRTxD_Init                           0x00000330   Section        0  pins.o(i.PinRTxD_Init)
+    i.PinSel_Init                            0x00000358   Section        0  pins.o(i.PinSel_Init)
+    i.PinVpres_Init                          0x00000388   Section        0  pins.o(i.PinVpres_Init)
+    i.SPI0_Int_Handler                       0x000003b0   Section        0  main.o(i.SPI0_Int_Handler)
+    i.SysTick_Handler                        0x00000498   Section        0  main.o(i.SysTick_Handler)
+    i.SystemInitForLowPower                  0x000004c8   Section        0  system_aducm360.o(i.SystemInitForLowPower)
+    i.UART_Int_Handler                       0x000004f4   Section        0  main.o(i.UART_Int_Handler)
+    i.WakeUp_Int_Handler                     0x00000610   Section        0  main.o(i.WakeUp_Int_Handler)
+    i.__NVIC_EnableIRQ                       0x00000640   Section        0  boardinit.o(i.__NVIC_EnableIRQ)
+    __NVIC_EnableIRQ                         0x00000641   Thumb Code    34  boardinit.o(i.__NVIC_EnableIRQ)
+    i.__scatterload_copy                     0x00000662   Section       14  handlers.o(i.__scatterload_copy)
+    i.__scatterload_null                     0x00000670   Section        2  handlers.o(i.__scatterload_null)
+    i.__scatterload_zeroinit                 0x00000672   Section       14  handlers.o(i.__scatterload_zeroinit)
+    i.goToSleep1                             0x00000680   Section        0  main.o(i.goToSleep1)
+    i.initCore                               0x000006c8   Section        0  boardinit.o(i.initCore)
+    i.initRtcWakeUpTimer2                    0x000006dc   Section        0  boardinit.o(i.initRtcWakeUpTimer2)
+    i.main                                   0x0000072c   Section        0  main.o(i.main)
+    .conststring                             0x00000764   Section      114  main.o(.conststring)
     .data                                    0x20000000   Section      164  main.o(.data)
     okStr                                    0x20000000   Data           4  main.o(.data)
     errStr                                   0x20000004   Data           4  main.o(.data)
@@ -853,40 +845,29 @@ Image Symbol Table
     __scatterload_rt2                        0x00000119   Thumb Code     0  init.o(.text)
     ADC0_Int_Handler                         0x0000013d   Thumb Code    38  main.o(i.ADC0_Int_Handler)
     ADC1_Int_Handler                         0x00000171   Thumb Code    40  main.o(i.ADC1_Int_Handler)
-    PinAll_Init                              0x000001a5   Thumb Code    40  pins.o(i.PinAll_Init)
-    PinCPUFET_Init                           0x000001cd   Thumb Code    34  pins.o(i.PinCPUFET_Init)
-    PinCS_Init                               0x000001f5   Thumb Code    58  pins.o(i.PinCS_Init)
-    PinCS_Off                                0x00000235   Thumb Code    20  pins.o(i.PinCS_Off)
-    PinCntrlPer_Init                         0x0000024d   Thumb Code    58  pins.o(i.PinCntrlPer_Init)
-    PinCntrlPer_Off                          0x0000028d   Thumb Code     8  pins.o(i.PinCntrlPer_Off)
-    PinMISO_Init                             0x00000299   Thumb Code    40  pins.o(i.PinMISO_Init)
-    PinMISO_Off                              0x000002c5   Thumb Code    20  pins.o(i.PinMISO_Off)
-    PinMOSISCK_Init                          0x000002dd   Thumb Code    58  pins.o(i.PinMOSISCK_Init)
-    PinMOSISCK_Off                           0x0000031d   Thumb Code    20  pins.o(i.PinMOSISCK_Off)
-    PinNC_Init                               0x00000335   Thumb Code   118  pins.o(i.PinNC_Init)
-    PinRTxD_Init                             0x000003b1   Thumb Code    64  pins.o(i.PinRTxD_Init)
-    PinRTxD_Off                              0x000003f5   Thumb Code    14  pins.o(i.PinRTxD_Off)
-    PinSPI_Off                               0x00000409   Thumb Code    16  pins.o(i.PinSPI_Off)
-    PinSel_Init                              0x00000419   Thumb Code    44  pins.o(i.PinSel_Init)
-    PinSel_Off                               0x00000449   Thumb Code     8  pins.o(i.PinSel_Off)
-    PinVpres_Init                            0x00000451   Thumb Code    34  pins.o(i.PinVpres_Init)
-    SPI0_Int_Handler                         0x00000479   Thumb Code   206  main.o(i.SPI0_Int_Handler)
-    SysTick_Handler                          0x00000561   Thumb Code    30  main.o(i.SysTick_Handler)
-    SystemInitForLowPower                    0x00000591   Thumb Code    32  system_aducm360.o(i.SystemInitForLowPower)
-    UART_Int_Handler                         0x000005bd   Thumb Code   262  main.o(i.UART_Int_Handler)
-    WakeUp_Int_Handler                       0x000006d9   Thumb Code    40  main.o(i.WakeUp_Int_Handler)
-    __scatterload_copy                       0x0000072b   Thumb Code    14  handlers.o(i.__scatterload_copy)
-    __scatterload_null                       0x00000739   Thumb Code     2  handlers.o(i.__scatterload_null)
-    __scatterload_zeroinit                   0x0000073b   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
-    disableADC                               0x00000749   Thumb Code    46  boardinit.o(i.disableADC)
-    disableSpi_0                             0x00000781   Thumb Code    46  boardinit.o(i.disableSpi_0)
-    disableUART                              0x000007b5   Thumb Code    38  boardinit.o(i.disableUART)
-    goToSleep1                               0x000007e5   Thumb Code    82  main.o(i.goToSleep1)
-    initCore                                 0x00000845   Thumb Code    14  boardinit.o(i.initCore)
-    initRtcWakeUpTimer2                      0x00000859   Thumb Code    64  boardinit.o(i.initRtcWakeUpTimer2)
-    main                                     0x000008a5   Thumb Code    36  main.o(i.main)
-    Region$$Table$$Base                      0x00000940   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x00000950   Number         0  anon$$obj.o(Region$$Table)
+    PinAll_Init                              0x000001a5   Thumb Code    36  pins.o(i.PinAll_Init)
+    PinCS_Init                               0x000001c9   Thumb Code    58  pins.o(i.PinCS_Init)
+    PinCntrlPer_Init                         0x00000209   Thumb Code    58  pins.o(i.PinCntrlPer_Init)
+    PinMISO_Init                             0x00000249   Thumb Code    40  pins.o(i.PinMISO_Init)
+    PinMOSISCK_Init                          0x00000275   Thumb Code    58  pins.o(i.PinMOSISCK_Init)
+    PinNC_Init                               0x000002b5   Thumb Code   118  pins.o(i.PinNC_Init)
+    PinRTxD_Init                             0x00000331   Thumb Code    34  pins.o(i.PinRTxD_Init)
+    PinSel_Init                              0x00000359   Thumb Code    44  pins.o(i.PinSel_Init)
+    PinVpres_Init                            0x00000389   Thumb Code    34  pins.o(i.PinVpres_Init)
+    SPI0_Int_Handler                         0x000003b1   Thumb Code   206  main.o(i.SPI0_Int_Handler)
+    SysTick_Handler                          0x00000499   Thumb Code    30  main.o(i.SysTick_Handler)
+    SystemInitForLowPower                    0x000004c9   Thumb Code    32  system_aducm360.o(i.SystemInitForLowPower)
+    UART_Int_Handler                         0x000004f5   Thumb Code   262  main.o(i.UART_Int_Handler)
+    WakeUp_Int_Handler                       0x00000611   Thumb Code    40  main.o(i.WakeUp_Int_Handler)
+    __scatterload_copy                       0x00000663   Thumb Code    14  handlers.o(i.__scatterload_copy)
+    __scatterload_null                       0x00000671   Thumb Code     2  handlers.o(i.__scatterload_null)
+    __scatterload_zeroinit                   0x00000673   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
+    goToSleep1                               0x00000681   Thumb Code    58  main.o(i.goToSleep1)
+    initCore                                 0x000006c9   Thumb Code    14  boardinit.o(i.initCore)
+    initRtcWakeUpTimer2                      0x000006dd   Thumb Code    66  boardinit.o(i.initRtcWakeUpTimer2)
+    main                                     0x0000072d   Thumb Code    48  main.o(i.main)
+    Region$$Table$$Base                      0x000007d8   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x000007e8   Number         0  anon$$obj.o(Region$$Table)
     Flags                                    0x2000003c   Data           2  main.o(.data)
     pUartTxBuffer                            0x20000040   Data           4  main.o(.data)
     pUartRxBuffer                            0x20000044   Data           4  main.o(.data)
@@ -924,72 +905,61 @@ Memory Map of the image
 
   Image Entry point : 0x000000e1
 
-  Load Region LR_IROM1 (Base: 0x00000000, Size: 0x000009f4, Max: 0x00020000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x00000000, Size: 0x0000088c, Max: 0x00020000, ABSOLUTE)
 
-    Execution Region ER_IROM1 (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x00000950, Max: 0x00020000, ABSOLUTE)
+    Execution Region ER_IROM1 (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x000007e8, Max: 0x00020000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x00000000   0x00000000   0x000000e0   Data   RO          633    RESET               startup_aducm360.o
-    0x000000e0   0x000000e0   0x00000000   Code   RO          699  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
-    0x000000e0   0x000000e0   0x00000004   Code   RO          982    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
-    0x000000e4   0x000000e4   0x00000004   Code   RO          985    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
-    0x000000e8   0x000000e8   0x00000000   Code   RO          987    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
-    0x000000e8   0x000000e8   0x00000000   Code   RO          989    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
-    0x000000e8   0x000000e8   0x00000008   Code   RO          990    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
-    0x000000f0   0x000000f0   0x00000000   Code   RO          992    .ARM.Collect$$$$0000000D  mc_w.l(entry10a.o)
-    0x000000f0   0x000000f0   0x00000000   Code   RO          994    .ARM.Collect$$$$0000000F  mc_w.l(entry11a.o)
-    0x000000f0   0x000000f0   0x00000004   Code   RO          983    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
-    0x000000f4   0x000000f4   0x00000024   Code   RO          634    .text               startup_aducm360.o
-    0x00000118   0x00000118   0x00000024   Code   RO         1029    .text               mc_w.l(init.o)
+    0x00000000   0x00000000   0x000000e0   Data   RO          621    RESET               startup_aducm360.o
+    0x000000e0   0x000000e0   0x00000000   Code   RO          687  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
+    0x000000e0   0x000000e0   0x00000004   Code   RO          970    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
+    0x000000e4   0x000000e4   0x00000004   Code   RO          973    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
+    0x000000e8   0x000000e8   0x00000000   Code   RO          975    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
+    0x000000e8   0x000000e8   0x00000000   Code   RO          977    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
+    0x000000e8   0x000000e8   0x00000008   Code   RO          978    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
+    0x000000f0   0x000000f0   0x00000000   Code   RO          980    .ARM.Collect$$$$0000000D  mc_w.l(entry10a.o)
+    0x000000f0   0x000000f0   0x00000000   Code   RO          982    .ARM.Collect$$$$0000000F  mc_w.l(entry11a.o)
+    0x000000f0   0x000000f0   0x00000004   Code   RO          971    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
+    0x000000f4   0x000000f4   0x00000024   Code   RO          622    .text               startup_aducm360.o
+    0x00000118   0x00000118   0x00000024   Code   RO         1017    .text               mc_w.l(init.o)
     0x0000013c   0x0000013c   0x00000034   Code   RO            4    i.ADC0_Int_Handler  main.o
     0x00000170   0x00000170   0x00000034   Code   RO            5    i.ADC1_Int_Handler  main.o
-    0x000001a4   0x000001a4   0x00000028   Code   RO          444    i.PinAll_Init       pins.o
-    0x000001cc   0x000001cc   0x00000028   Code   RO          445    i.PinCPUFET_Init    pins.o
-    0x000001f4   0x000001f4   0x00000040   Code   RO          448    i.PinCS_Init        pins.o
-    0x00000234   0x00000234   0x00000018   Code   RO          449    i.PinCS_Off         pins.o
-    0x0000024c   0x0000024c   0x00000040   Code   RO          451    i.PinCntrlPer_Init  pins.o
-    0x0000028c   0x0000028c   0x0000000c   Code   RO          452    i.PinCntrlPer_Off   pins.o
-    0x00000298   0x00000298   0x0000002c   Code   RO          454    i.PinMISO_Init      pins.o
-    0x000002c4   0x000002c4   0x00000018   Code   RO          455    i.PinMISO_Off       pins.o
-    0x000002dc   0x000002dc   0x00000040   Code   RO          457    i.PinMOSISCK_Init   pins.o
-    0x0000031c   0x0000031c   0x00000018   Code   RO          458    i.PinMOSISCK_Off    pins.o
-    0x00000334   0x00000334   0x0000007c   Code   RO          460    i.PinNC_Init        pins.o
-    0x000003b0   0x000003b0   0x00000044   Code   RO          461    i.PinRTxD_Init      pins.o
-    0x000003f4   0x000003f4   0x00000014   Code   RO          462    i.PinRTxD_Off       pins.o
-    0x00000408   0x00000408   0x00000010   Code   RO          464    i.PinSPI_Off        pins.o
-    0x00000418   0x00000418   0x00000030   Code   RO          466    i.PinSel_Init       pins.o
-    0x00000448   0x00000448   0x00000008   Code   RO          467    i.PinSel_Off        pins.o
-    0x00000450   0x00000450   0x00000028   Code   RO          469    i.PinVpres_Init     pins.o
-    0x00000478   0x00000478   0x000000e8   Code   RO            6    i.SPI0_Int_Handler  main.o
-    0x00000560   0x00000560   0x00000030   Code   RO            7    i.SysTick_Handler   main.o
-    0x00000590   0x00000590   0x0000002c   Code   RO          645    i.SystemInitForLowPower  system_aducm360.o
-    0x000005bc   0x000005bc   0x0000011c   Code   RO            8    i.UART_Int_Handler  main.o
-    0x000006d8   0x000006d8   0x00000030   Code   RO            9    i.WakeUp_Int_Handler  main.o
-    0x00000708   0x00000708   0x00000022   Code   RO          322    i.__NVIC_EnableIRQ  boardinit.o
-    0x0000072a   0x0000072a   0x0000000e   Code   RO         1075    i.__scatterload_copy  mc_w.l(handlers.o)
-    0x00000738   0x00000738   0x00000002   Code   RO         1076    i.__scatterload_null  mc_w.l(handlers.o)
-    0x0000073a   0x0000073a   0x0000000e   Code   RO         1077    i.__scatterload_zeroinit  mc_w.l(handlers.o)
-    0x00000748   0x00000748   0x00000038   Code   RO          323    i.disableADC        boardinit.o
-    0x00000780   0x00000780   0x00000034   Code   RO          324    i.disableSpi_0      boardinit.o
-    0x000007b4   0x000007b4   0x00000030   Code   RO          325    i.disableUART       boardinit.o
-    0x000007e4   0x000007e4   0x00000060   Code   RO           28    i.goToSleep1        main.o
-    0x00000844   0x00000844   0x00000014   Code   RO          330    i.initCore          boardinit.o
-    0x00000858   0x00000858   0x0000004c   Code   RO          331    i.initRtcWakeUpTimer2  boardinit.o
-    0x000008a4   0x000008a4   0x00000028   Code   RO           29    i.main              main.o
-    0x000008cc   0x000008cc   0x00000072   Data   RO           47    .conststring        main.o
-    0x0000093e   0x0000093e   0x00000002   PAD
-    0x00000940   0x00000940   0x00000010   Data   RO         1073    Region$$Table       anon$$obj.o
+    0x000001a4   0x000001a4   0x00000024   Code   RO          444    i.PinAll_Init       pins.o
+    0x000001c8   0x000001c8   0x00000040   Code   RO          445    i.PinCS_Init        pins.o
+    0x00000208   0x00000208   0x00000040   Code   RO          448    i.PinCntrlPer_Init  pins.o
+    0x00000248   0x00000248   0x0000002c   Code   RO          451    i.PinMISO_Init      pins.o
+    0x00000274   0x00000274   0x00000040   Code   RO          454    i.PinMOSISCK_Init   pins.o
+    0x000002b4   0x000002b4   0x0000007c   Code   RO          457    i.PinNC_Init        pins.o
+    0x00000330   0x00000330   0x00000028   Code   RO          458    i.PinRTxD_Init      pins.o
+    0x00000358   0x00000358   0x00000030   Code   RO          464    i.PinSel_Init       pins.o
+    0x00000388   0x00000388   0x00000028   Code   RO          467    i.PinVpres_Init     pins.o
+    0x000003b0   0x000003b0   0x000000e8   Code   RO            6    i.SPI0_Int_Handler  main.o
+    0x00000498   0x00000498   0x00000030   Code   RO            7    i.SysTick_Handler   main.o
+    0x000004c8   0x000004c8   0x0000002c   Code   RO          633    i.SystemInitForLowPower  system_aducm360.o
+    0x000004f4   0x000004f4   0x0000011c   Code   RO            8    i.UART_Int_Handler  main.o
+    0x00000610   0x00000610   0x00000030   Code   RO            9    i.WakeUp_Int_Handler  main.o
+    0x00000640   0x00000640   0x00000022   Code   RO          322    i.__NVIC_EnableIRQ  boardinit.o
+    0x00000662   0x00000662   0x0000000e   Code   RO         1063    i.__scatterload_copy  mc_w.l(handlers.o)
+    0x00000670   0x00000670   0x00000002   Code   RO         1064    i.__scatterload_null  mc_w.l(handlers.o)
+    0x00000672   0x00000672   0x0000000e   Code   RO         1065    i.__scatterload_zeroinit  mc_w.l(handlers.o)
+    0x00000680   0x00000680   0x00000048   Code   RO           28    i.goToSleep1        main.o
+    0x000006c8   0x000006c8   0x00000014   Code   RO          330    i.initCore          boardinit.o
+    0x000006dc   0x000006dc   0x00000050   Code   RO          331    i.initRtcWakeUpTimer2  boardinit.o
+    0x0000072c   0x0000072c   0x00000038   Code   RO           29    i.main              main.o
+    0x00000764   0x00000764   0x00000072   Data   RO           47    .conststring        main.o
+    0x000007d6   0x000007d6   0x00000002   PAD
+    0x000007d8   0x000007d8   0x00000010   Data   RO         1061    Region$$Table       anon$$obj.o
 
 
-    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x00000950, Size: 0x00000638, Max: 0x00002000, ABSOLUTE, UNINIT)
+    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x000007e8, Size: 0x00000638, Max: 0x00002000, ABSOLUTE, UNINIT)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000000   0x00000950   0x000000a4   Data   RW           48    .data               main.o
+    0x20000000   0x000007e8   0x000000a4   Data   RW           48    .data               main.o
     0x200000a4        -       0x00000190   Zero   RW           45    .bss                main.o
-    0x20000234   0x000009f4   0x00000004   PAD
-    0x20000238        -       0x00000400   Zero   RW          631    STACK               startup_aducm360.o
+    0x20000234   0x0000088c   0x00000004   PAD
+    0x20000238        -       0x00000400   Zero   RW          619    STACK               startup_aducm360.o
 
 
 ==============================================================================
@@ -999,14 +969,14 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-       286         44          0          0          0       3395   boardinit.o
-       852        118        114        164        400     223183   main.o
-       724         70          0          0          0       7291   pins.o
+       134         20          0          0          0       2009   boardinit.o
+       844        122        114        164        400     223155   main.o
+       524         44          0          0          0       3861   pins.o
         36          8        224          0       1024        820   startup_aducm360.o
         44         12          0          0          0        500   system_aducm360.o
 
     ----------------------------------------------------------------------
-      1942        252        356        164       1428     235189   Object Totals
+      1582        206        356        164       1428     230345   Object Totals
          0          0         16          0          0          0   (incl. Generated)
          0          0          2          0          4          0   (incl. Padding)
 
@@ -1045,15 +1015,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      2028        268        356        164       1428     233901   Grand Totals
-      2028        268        356        164       1428     233901   ELF Image Totals
-      2028        268        356        164          0          0   ROM Totals
+      1668        222        356        164       1428     229681   Grand Totals
+      1668        222        356        164       1428     229681   ELF Image Totals
+      1668        222        356        164          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 2384 (   2.33kB)
+    Total RO  Size (Code + RO Data)                 2024 (   1.98kB)
     Total RW  Size (RW Data + ZI Data)              1592 (   1.55kB)
-    Total ROM Size (Code + RO Data + RW Data)       2548 (   2.49kB)
+    Total ROM Size (Code + RO Data + RW Data)       2188 (   2.14kB)
 
 ==============================================================================
 

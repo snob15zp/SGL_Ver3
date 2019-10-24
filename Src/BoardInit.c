@@ -158,7 +158,7 @@ void startWakeUpOnEverySecond(void){
 
 void	initRtcWakeUpTimer2 (uint16_t* interval){
 	uint32_t miliseconds;
-	miliseconds= (*interval);
+	miliseconds= (*interval)-1;
 	pADI_CLKCTL->XOSCCON |= XOSCCON_ENABLE;
 	
 	//pADI_WUT->T2CON |= T2CON_STOPINC | T2CON_PRE_DIV32768 | T2CON_CLK_LFXTAL | T2CON_ENABLE | T2CON_WUEN; // start timer with clocking 1 secund

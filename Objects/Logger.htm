@@ -3,11 +3,11 @@
 <title>Static Call Graph - [.\Objects\Logger.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\Logger.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Wed Oct 23 16:47:47 2019
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Wed Oct 23 18:17:08 2019
 <BR><P>
-<H3>Maximum Stack Usage =         32 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =         24 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
-main &rArr; goToSleep1 &rArr; disableSpi_0 &rArr; PinSPI_Off &rArr; PinMOSISCK_Off
+main &rArr; initRtcWakeUpTimer2
 <P>
 <H3>
 Mutually Recursive functions
@@ -84,7 +84,7 @@ Global Symbols
 <P><STRONG><a name="[32]"></a>__main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry.o(.ARM.Collect$$$$00000000))
 <BR>[Address Reference Count : 1]<UL><LI> startup_aducm360.o(.text)
 </UL>
-<P><STRONG><a name="[4e]"></a>_main_stk</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry2.o(.ARM.Collect$$$$00000001))
+<P><STRONG><a name="[43]"></a>_main_stk</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry2.o(.ARM.Collect$$$$00000001))
 
 <P><STRONG><a name="[33]"></a>_main_scatterload</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry5.o(.ARM.Collect$$$$00000004))
 <BR><BR>[Calls]<UL><LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload
@@ -94,15 +94,15 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload
 </UL>
 
-<P><STRONG><a name="[4f]"></a>_main_clock</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry7b.o(.ARM.Collect$$$$00000008))
+<P><STRONG><a name="[44]"></a>_main_clock</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry7b.o(.ARM.Collect$$$$00000008))
 
-<P><STRONG><a name="[50]"></a>_main_cpp_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry8b.o(.ARM.Collect$$$$0000000A))
+<P><STRONG><a name="[45]"></a>_main_cpp_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry8b.o(.ARM.Collect$$$$0000000A))
 
-<P><STRONG><a name="[51]"></a>_main_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry9a.o(.ARM.Collect$$$$0000000B))
+<P><STRONG><a name="[46]"></a>_main_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry9a.o(.ARM.Collect$$$$0000000B))
 
-<P><STRONG><a name="[52]"></a>__rt_final_cpp</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry10a.o(.ARM.Collect$$$$0000000D))
+<P><STRONG><a name="[47]"></a>__rt_final_cpp</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry10a.o(.ARM.Collect$$$$0000000D))
 
-<P><STRONG><a name="[53]"></a>__rt_final_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry11a.o(.ARM.Collect$$$$0000000F))
+<P><STRONG><a name="[48]"></a>__rt_final_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry11a.o(.ARM.Collect$$$$0000000F))
 
 <P><STRONG><a name="[0]"></a>Reset_Handler</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, startup_aducm360.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> startup_aducm360.o(RESET)
@@ -272,7 +272,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_main_scatterload
 </UL>
 
-<P><STRONG><a name="[54]"></a>__scatterload_rt2</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, init.o(.text), UNUSED)
+<P><STRONG><a name="[49]"></a>__scatterload_rt2</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, init.o(.text), UNUSED)
 
 <P><STRONG><a name="[16]"></a>ADC0_Int_Handler</STRONG> (Thumb, 38 bytes, Stack size 8 bytes, main.o(i.ADC0_Int_Handler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = ADC0_Int_Handler
@@ -284,109 +284,50 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_aducm360.o(RESET)
 </UL>
-<P><STRONG><a name="[36]"></a>PinAll_Init</STRONG> (Thumb, 40 bytes, Stack size 4 bytes, pins.o(i.PinAll_Init))
+<P><STRONG><a name="[36]"></a>PinAll_Init</STRONG> (Thumb, 36 bytes, Stack size 4 bytes, pins.o(i.PinAll_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = PinAll_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PinVpres_Init
+<BR>[Calls]<UL><LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PinVpres_Init
 <LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PinSel_Init
 <LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PinRTxD_Init
 <LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PinNC_Init
-<LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PinMOSISCK_Init
-<LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PinMISO_Init
+<LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PinMOSISCK_Init
+<LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PinMISO_Init
 <LI><a href="#[37]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PinCntrlPer_Init
-<LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PinCS_Init
-<LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PinCPUFET_Init
+<LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PinCS_Init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[3b]"></a>PinCPUFET_Init</STRONG> (Thumb, 34 bytes, Stack size 0 bytes, pins.o(i.PinCPUFET_Init))
+<P><STRONG><a name="[3e]"></a>PinCS_Init</STRONG> (Thumb, 58 bytes, Stack size 0 bytes, pins.o(i.PinCS_Init))
 <BR><BR>[Called By]<UL><LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PinAll_Init
-</UL>
-
-<P><STRONG><a name="[3f]"></a>PinCS_Init</STRONG> (Thumb, 58 bytes, Stack size 0 bytes, pins.o(i.PinCS_Init))
-<BR><BR>[Called By]<UL><LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PinCS_Off
-<LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PinAll_Init
-</UL>
-
-<P><STRONG><a name="[40]"></a>PinCS_Off</STRONG> (Thumb, 20 bytes, Stack size 4 bytes, pins.o(i.PinCS_Off))
-<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = PinCS_Off
-</UL>
-<BR>[Calls]<UL><LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PinCS_Init
-</UL>
-<BR>[Called By]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PinSPI_Off
 </UL>
 
 <P><STRONG><a name="[37]"></a>PinCntrlPer_Init</STRONG> (Thumb, 58 bytes, Stack size 0 bytes, pins.o(i.PinCntrlPer_Init))
 <BR><BR>[Called By]<UL><LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PinAll_Init
 </UL>
 
-<P><STRONG><a name="[4a]"></a>PinCntrlPer_Off</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, pins.o(i.PinCntrlPer_Off))
-<BR><BR>[Called By]<UL><LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;goToSleep1
+<P><STRONG><a name="[3c]"></a>PinMISO_Init</STRONG> (Thumb, 40 bytes, Stack size 0 bytes, pins.o(i.PinMISO_Init))
+<BR><BR>[Called By]<UL><LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PinAll_Init
 </UL>
 
-<P><STRONG><a name="[3d]"></a>PinMISO_Init</STRONG> (Thumb, 40 bytes, Stack size 0 bytes, pins.o(i.PinMISO_Init))
-<BR><BR>[Called By]<UL><LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PinMISO_Off
-<LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PinAll_Init
-</UL>
-
-<P><STRONG><a name="[41]"></a>PinMISO_Off</STRONG> (Thumb, 20 bytes, Stack size 4 bytes, pins.o(i.PinMISO_Off))
-<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = PinMISO_Off
-</UL>
-<BR>[Calls]<UL><LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PinMISO_Init
-</UL>
-<BR>[Called By]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PinSPI_Off
-</UL>
-
-<P><STRONG><a name="[3e]"></a>PinMOSISCK_Init</STRONG> (Thumb, 58 bytes, Stack size 0 bytes, pins.o(i.PinMOSISCK_Init))
-<BR><BR>[Called By]<UL><LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PinMOSISCK_Off
-<LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PinAll_Init
-</UL>
-
-<P><STRONG><a name="[42]"></a>PinMOSISCK_Off</STRONG> (Thumb, 20 bytes, Stack size 4 bytes, pins.o(i.PinMOSISCK_Off))
-<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = PinMOSISCK_Off
-</UL>
-<BR>[Calls]<UL><LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PinMOSISCK_Init
-</UL>
-<BR>[Called By]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PinSPI_Off
+<P><STRONG><a name="[3d]"></a>PinMOSISCK_Init</STRONG> (Thumb, 58 bytes, Stack size 0 bytes, pins.o(i.PinMOSISCK_Init))
+<BR><BR>[Called By]<UL><LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PinAll_Init
 </UL>
 
 <P><STRONG><a name="[38]"></a>PinNC_Init</STRONG> (Thumb, 118 bytes, Stack size 0 bytes, pins.o(i.PinNC_Init))
 <BR><BR>[Called By]<UL><LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PinAll_Init
 </UL>
 
-<P><STRONG><a name="[3a]"></a>PinRTxD_Init</STRONG> (Thumb, 64 bytes, Stack size 0 bytes, pins.o(i.PinRTxD_Init))
+<P><STRONG><a name="[3a]"></a>PinRTxD_Init</STRONG> (Thumb, 34 bytes, Stack size 0 bytes, pins.o(i.PinRTxD_Init))
 <BR><BR>[Called By]<UL><LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PinAll_Init
 </UL>
 
-<P><STRONG><a name="[48]"></a>PinRTxD_Off</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, pins.o(i.PinRTxD_Off))
-<BR><BR>[Called By]<UL><LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;disableUART
-</UL>
-
-<P><STRONG><a name="[43]"></a>PinSPI_Off</STRONG> (Thumb, 16 bytes, Stack size 4 bytes, pins.o(i.PinSPI_Off))
-<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = PinSPI_Off &rArr; PinMOSISCK_Off
-</UL>
-<BR>[Calls]<UL><LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PinMOSISCK_Off
-<LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PinMISO_Off
-<LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PinCS_Off
-</UL>
-<BR>[Called By]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;disableSpi_0
-</UL>
-
 <P><STRONG><a name="[39]"></a>PinSel_Init</STRONG> (Thumb, 44 bytes, Stack size 0 bytes, pins.o(i.PinSel_Init))
-<BR><BR>[Called By]<UL><LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PinSel_Off
-<LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PinAll_Init
+<BR><BR>[Called By]<UL><LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PinAll_Init
 </UL>
 
-<P><STRONG><a name="[44]"></a>PinSel_Off</STRONG> (Thumb, 8 bytes, Stack size 4 bytes, pins.o(i.PinSel_Off))
-<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = PinSel_Off
-</UL>
-<BR>[Calls]<UL><LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PinSel_Init
-</UL>
-<BR>[Called By]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;disableADC
-</UL>
-
-<P><STRONG><a name="[3c]"></a>PinVpres_Init</STRONG> (Thumb, 34 bytes, Stack size 0 bytes, pins.o(i.PinVpres_Init))
+<P><STRONG><a name="[3b]"></a>PinVpres_Init</STRONG> (Thumb, 34 bytes, Stack size 0 bytes, pins.o(i.PinVpres_Init))
 <BR><BR>[Called By]<UL><LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PinAll_Init
 </UL>
 
@@ -409,74 +350,43 @@ Global Symbols
 <P><STRONG><a name="[a]"></a>WakeUp_Int_Handler</STRONG> (Thumb, 40 bytes, Stack size 0 bytes, main.o(i.WakeUp_Int_Handler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_aducm360.o(RESET)
 </UL>
-<P><STRONG><a name="[55]"></a>__scatterload_copy</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_copy), UNUSED)
+<P><STRONG><a name="[4a]"></a>__scatterload_copy</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_copy), UNUSED)
 
-<P><STRONG><a name="[56]"></a>__scatterload_null</STRONG> (Thumb, 2 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_null), UNUSED)
+<P><STRONG><a name="[4b]"></a>__scatterload_null</STRONG> (Thumb, 2 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_null), UNUSED)
 
-<P><STRONG><a name="[57]"></a>__scatterload_zeroinit</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_zeroinit), UNUSED)
+<P><STRONG><a name="[4c]"></a>__scatterload_zeroinit</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_zeroinit), UNUSED)
 
-<P><STRONG><a name="[45]"></a>disableADC</STRONG> (Thumb, 46 bytes, Stack size 8 bytes, boardinit.o(i.disableADC))
-<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = disableADC &rArr; PinSel_Off
-</UL>
-<BR>[Calls]<UL><LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PinSel_Off
-</UL>
-<BR>[Called By]<UL><LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;goToSleep1
-</UL>
-
-<P><STRONG><a name="[46]"></a>disableSpi_0</STRONG> (Thumb, 46 bytes, Stack size 8 bytes, boardinit.o(i.disableSpi_0))
-<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = disableSpi_0 &rArr; PinSPI_Off &rArr; PinMOSISCK_Off
-</UL>
-<BR>[Calls]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PinSPI_Off
-</UL>
-<BR>[Called By]<UL><LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;goToSleep1
-</UL>
-
-<P><STRONG><a name="[47]"></a>disableUART</STRONG> (Thumb, 38 bytes, Stack size 8 bytes, boardinit.o(i.disableUART))
-<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = disableUART
-</UL>
-<BR>[Calls]<UL><LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PinRTxD_Off
-</UL>
-<BR>[Called By]<UL><LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;goToSleep1
-</UL>
-
-<P><STRONG><a name="[49]"></a>goToSleep1</STRONG> (Thumb, 82 bytes, Stack size 8 bytes, main.o(i.goToSleep1))
-<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = goToSleep1 &rArr; disableSpi_0 &rArr; PinSPI_Off &rArr; PinMOSISCK_Off
-</UL>
-<BR>[Calls]<UL><LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;disableUART
-<LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;disableSpi_0
-<LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;disableADC
-<LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PinCntrlPer_Off
-</UL>
-<BR>[Called By]<UL><LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-</UL>
-
-<P><STRONG><a name="[4d]"></a>initCore</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, boardinit.o(i.initCore))
+<P><STRONG><a name="[42]"></a>goToSleep1</STRONG> (Thumb, 58 bytes, Stack size 0 bytes, main.o(i.goToSleep1))
 <BR><BR>[Called By]<UL><LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[4b]"></a>initRtcWakeUpTimer2</STRONG> (Thumb, 64 bytes, Stack size 16 bytes, boardinit.o(i.initRtcWakeUpTimer2))
+<P><STRONG><a name="[41]"></a>initCore</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, boardinit.o(i.initCore))
+<BR><BR>[Called By]<UL><LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+</UL>
+
+<P><STRONG><a name="[3f]"></a>initRtcWakeUpTimer2</STRONG> (Thumb, 66 bytes, Stack size 16 bytes, boardinit.o(i.initRtcWakeUpTimer2))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = initRtcWakeUpTimer2
 </UL>
-<BR>[Calls]<UL><LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__NVIC_EnableIRQ
+<BR>[Calls]<UL><LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__NVIC_EnableIRQ
 </UL>
 <BR>[Called By]<UL><LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[30]"></a>main</STRONG> (Thumb, 36 bytes, Stack size 8 bytes, main.o(i.main))
-<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = main &rArr; goToSleep1 &rArr; disableSpi_0 &rArr; PinSPI_Off &rArr; PinMOSISCK_Off
+<P><STRONG><a name="[30]"></a>main</STRONG> (Thumb, 48 bytes, Stack size 8 bytes, main.o(i.main))
+<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = main &rArr; initRtcWakeUpTimer2
 </UL>
-<BR>[Calls]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initRtcWakeUpTimer2
-<LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initCore
+<BR>[Calls]<UL><LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initRtcWakeUpTimer2
+<LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initCore
 <LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PinAll_Init
-<LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;goToSleep1
+<LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;goToSleep1
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> entry9a.o(.ARM.Collect$$$$0000000B)
 </UL><P>
 <H3>
 Local Symbols
 </H3>
-<P><STRONG><a name="[4c]"></a>__NVIC_EnableIRQ</STRONG> (Thumb, 34 bytes, Stack size 0 bytes, boardinit.o(i.__NVIC_EnableIRQ))
-<BR><BR>[Called By]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initRtcWakeUpTimer2
+<P><STRONG><a name="[40]"></a>__NVIC_EnableIRQ</STRONG> (Thumb, 34 bytes, Stack size 0 bytes, boardinit.o(i.__NVIC_EnableIRQ))
+<BR><BR>[Called By]<UL><LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initRtcWakeUpTimer2
 </UL>
 <P>
 <H3>

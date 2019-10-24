@@ -6,7 +6,7 @@
 #define RxD                 ((uint8_t) 1<<1)            // for pin P0.1
 #define TxD                 ((uint8_t) 1<<2)            // for pin P0.2
 #define SEL_1								((uint8_t) 1<<3)						// for pin P0.3
-#define CPU_FET							((uint8_t) 1<<4)						// for P0.4
+//#define CPU_FET							((uint8_t) 1<<4)						// for P0.4
 #define VEXT_PRES						((uint8_t) 1<<5	)					// for pin P0.5
 #define MISO                ((uint8_t) 1<<4	)         // for pin P1.4
 #define SCK                 ((uint8_t) 1<<5	)         // for pin P1.5

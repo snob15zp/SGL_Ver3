@@ -1,5 +1,5 @@
 Dependencies for Project 'Logger', Target 'Target 1': (DO NOT MODIFY !)
-F (.\main.c)(0x5DB05A02)(--c99 --gnu -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\Inc -I .\Src-I.\RTE\_Target_1-IC:\Users\RD\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include-IC:\Users\RD\AppData\Local\Arm\Packs\AnalogDevices\ADuCM36x_DFP\1.0.4\Device\Include-D__UVISION_VERSION="528" -D_RTE_ -D__ADUCM360__-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+F (.\main.c)(0x5DB06AE7)(--c99 --gnu -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\Inc -I .\Src-I.\RTE\_Target_1-IC:\Users\RD\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include-IC:\Users\RD\AppData\Local\Arm\Packs\AnalogDevices\ADuCM36x_DFP\1.0.4\Device\Include-D__UVISION_VERSION="528" -D_RTE_ -D__ADUCM360__-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5CEBC032)
 I (C:\Keil_v5\ARM\ARMCC\include\time.h)(0x5CEBC026)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5CEBC032)
@@ -13,8 +13,8 @@ I (C:\Users\RD\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_
 I (C:\Users\RD\AppData\Local\Arm\Packs\AnalogDevices\ADuCM36x_DFP\1.0.4\Device\Include\system_ADuCM360.h)(0x5CDBB11C)
 I (.\Inc\BoardInit.h)(0x5DAF2646)
 I (.\Inc\LoggerDef.h)(0x5DAF149C)
-I (.\Inc\Pins.h)(0x5DAEF98A)
-F (.\Src\BoardInit.c)(0x5DB0592E)(--c99 --gnu -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\Inc -I .\Src-I.\RTE\_Target_1-IC:\Users\RD\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include-IC:\Users\RD\AppData\Local\Arm\Packs\AnalogDevices\ADuCM36x_DFP\1.0.4\Device\Include-D__UVISION_VERSION="528" -D_RTE_ -D__ADUCM360__-o .\objects\boardinit.o --omf_browse .\objects\boardinit.crf --depend .\objects\boardinit.d)
+I (.\Inc\Pins.h)(0x5DB0605F)
+F (.\Src\BoardInit.c)(0x5DB06EF3)(--c99 --gnu -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\Inc -I .\Src-I.\RTE\_Target_1-IC:\Users\RD\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include-IC:\Users\RD\AppData\Local\Arm\Packs\AnalogDevices\ADuCM36x_DFP\1.0.4\Device\Include-D__UVISION_VERSION="528" -D_RTE_ -D__ADUCM360__-o .\objects\boardinit.o --omf_browse .\objects\boardinit.crf --depend .\objects\boardinit.d)
 I (.\Inc\BoardInit.h)(0x5DAF2646)
 I (C:\Users\RD\AppData\Local\Arm\Packs\AnalogDevices\ADuCM36x_DFP\1.0.4\Device\Include\ADUCM360.h)(0x5CDBB11C)
 I (C:\Users\RD\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\core_cm3.h)(0x5D25D706)
@@ -23,11 +23,11 @@ I (C:\Users\RD\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_
 I (C:\Users\RD\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_compiler.h)(0x5D25D706)
 I (C:\Users\RD\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_armcc.h)(0x5D25D706)
 I (C:\Users\RD\AppData\Local\Arm\Packs\AnalogDevices\ADuCM36x_DFP\1.0.4\Device\Include\system_ADuCM360.h)(0x5CDBB11C)
-I (.\Inc\Pins.h)(0x5DAEF98A)
+I (.\Inc\Pins.h)(0x5DB0605F)
 F (.\Src\crc8.c)(0x5DAF6DEF)(--c99 --gnu -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\Inc -I .\Src-I.\RTE\_Target_1-IC:\Users\RD\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include-IC:\Users\RD\AppData\Local\Arm\Packs\AnalogDevices\ADuCM36x_DFP\1.0.4\Device\Include-D__UVISION_VERSION="528" -D_RTE_ -D__ADUCM360__-o .\objects\crc8.o --omf_browse .\objects\crc8.crf --depend .\objects\crc8.d)
 I (.\Inc\crc8.h)(0x5DAF6DFE)
-F (.\Src\Pins.c)(0x5DAEF326)(--c99 --gnu -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\Inc -I .\Src-I.\RTE\_Target_1-IC:\Users\RD\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include-IC:\Users\RD\AppData\Local\Arm\Packs\AnalogDevices\ADuCM36x_DFP\1.0.4\Device\Include-D__UVISION_VERSION="528" -D_RTE_ -D__ADUCM360__-o .\objects\pins.o --omf_browse .\objects\pins.crf --depend .\objects\pins.d)
-I (.\Inc\Pins.h)(0x5DAEF98A)
+F (.\Src\Pins.c)(0x5DB06060)(--c99 --gnu -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\Inc -I .\Src-I.\RTE\_Target_1-IC:\Users\RD\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include-IC:\Users\RD\AppData\Local\Arm\Packs\AnalogDevices\ADuCM36x_DFP\1.0.4\Device\Include-D__UVISION_VERSION="528" -D_RTE_ -D__ADUCM360__-o .\objects\pins.o --omf_browse .\objects\pins.crf --depend .\objects\pins.d)
+I (.\Inc\Pins.h)(0x5DB0605F)
 I (C:\Users\RD\AppData\Local\Arm\Packs\AnalogDevices\ADuCM36x_DFP\1.0.4\Device\Include\ADUCM360.h)(0x5CDBB11C)
 I (C:\Users\RD\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\core_cm3.h)(0x5D25D706)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5CEBC032)
